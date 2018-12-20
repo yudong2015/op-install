@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 
 LINK_ID="external_service"
 ROLE="openpitrix-db"
@@ -10,9 +9,3 @@ INSTANCE_ID={{$instance_id}}
 
 DB_IP={{getv "/links/$LINK_ID/hosts/$ROLE/$INSTANCE_ID/ip"}}
 DB_HOST=$ROLE
-
-echo "${DB_IP}	${DB_HOST}" > /opt/app-manager/link-host
-cat /opt/app-manager/hosts/origin-hosts /opt/app-manager/link-host > /etc/hosts
-
-CONTAINER_NAME="openpitrix-app-manager"
-docker exec -it $CONTAINER_NAME update-container-hosts.sh $DB_IP $DB_HOST
