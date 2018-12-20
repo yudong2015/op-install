@@ -1,0 +1,34 @@
+{
+	"name": {{cluster.name}},
+	"description": {{cluster.description}},
+	"vxnet": {{cluster.vxnet}},
+	"nodes": [{
+		"role": "openpitrix-db",
+		"container": {
+			"type": "kvm",
+			"image": "img-fp28ffu2",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-db.count}},
+		"cpu": {{cluster.openpitrix-db.cpu}},
+		"memory": {{cluster.openpitrix-db.memory}},
+		"instance_class": {{cluster.openpitrix-db.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-db.volume_size}}
+		},
+		"services": {
+			"start": {
+				"cmd": "/home/ubuntu/start.sh"
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-db"
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-db"
+			}
+		}
+	}],
+	"env": {
+		"mysql_root_password": {{env.mysql_root_password}}
+	}
+}

@@ -1,0 +1,49 @@
+{
+	"name": {{cluster.name}},
+	"description": {{cluster.description}},
+	"vxnet": {{cluster.vxnet}},
+	"links": {
+        "external_service":{{cluster.external_service}}            
+    },
+	"nodes": [{
+		"role": "openpitrix-app-manager",
+		"container": {
+			"type": "kvm",
+			"image": "img-qtatbwkh",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-app-manager.count}},
+		"cpu": {{cluster.openpitrix-app-manager.cpu}},
+		"memory": {{cluster.openpitrix-app-manager.memory}},
+		"instance_class": {{cluster.openpitrix-app-manager.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-app-manager.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/app-manager/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/app-manager/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-app-manager",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-app-manager",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-app-manager",
+				"timeout": 600
+			}
+		}
+	}],
+	"env": {
+		"app_manager_log_level": {{env.app_manager_log_level}},
+		"openpitrix_grpc_show_error_cause": {{env.openpitrix_grpc_show_error_cause}}
+	}
+}
