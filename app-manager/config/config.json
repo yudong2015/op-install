@@ -75,7 +75,7 @@
 				"required": "yes"
 			}]
 		},{
-            "key": "external_service_openpitrix_db",
+            "key": "external_service_openpitrix-db",
             "label": "Openpitrix DB",
     		"description": "Openpitrix DB service is used for openpitrix-app-manager.",
      		"type": "service",
@@ -83,7 +83,7 @@
      		"required": "yes",
      		"allowed_operations": ["add", "modify", "delete"]
         },{
-            "key": "external_service_openpitrix_etcd",
+            "key": "external_service_openpitrix-etcd",
             "label": "Openpitrix Etcd",
     		"description": "Openpitrix etcd service is used for openpitrix-app-manager",
      		"type": "service",

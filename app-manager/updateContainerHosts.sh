@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-if [ $# > 0 ]; then
+if [ $# -gt 0 ]; then
 	for arg in $*
 	do
 		HOST=`echo $arg|cut -d "=" -f 1`
