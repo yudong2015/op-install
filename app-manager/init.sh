@@ -1,20 +1,5 @@
 #!/usr/bin/env bash
 
-touch /opt/app-manager/hosts/test1
-touch /opt/app-manager/hosts/test2
-touch /opt/app-manager/hosts/test3
-touch /opt/app-manager/hosts/test4
-
-cat /etc/hosts > /opt/app-manager/hosts/test1
-
-cp /etc/hosts /opt/app-manager/hosts/origin-hosts
-
-cat /opt/app-manager/hosts/origin-hosts > /opt/app-manager/hosts/test2
-cat /opt/app-manager/hosts/link-hosts > /opt/app-manager/hosts/test3
-
-cat /opt/app-manager/hosts/origin-hosts /opt/app-manager/hosts/link-hosts > /etc/hosts
-
-cat /etc/hosts > /opt/app-manager/hosts/test4
 
 MYSQL_ROOT_PASSWORD=$(curl -s http://metadata/self/links/external_service/env/openpitrix-db/mysql_root_password)
 
