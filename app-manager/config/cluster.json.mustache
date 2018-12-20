@@ -3,13 +3,14 @@
 	"description": {{cluster.description}},
 	"vxnet": {{cluster.vxnet}},
 	"links": {
-        "external_service":{{cluster.external_service}}            
+        "external_service_openpitrix_db":{{cluster.external_service_openpitrix_db}},            
+        "external_service_openpitrix_etcd":{{cluster.external_service_openpitrix_etcd}}            
     },
 	"nodes": [{
 		"role": "openpitrix-app-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-li55ed3f",
+			"image": "img-ssk8aa26",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-app-manager.count}},

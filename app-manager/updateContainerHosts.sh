@@ -1,8 +1,13 @@
 #!/bin/sh
 
-DB_IP=$1
-DB_HOST=$2
 
-sed -e "/${DB_HOST}$/d" /etc/hosts > /tmp/hosts
-echo "${DB_IP}    ${DB_HOST}" >> /tmp/hosts
-cat /tmp/hosts > /etc/hosts
+if [ $# > 0 ]; then
+	for arg in $*
+	do
+		HOST=`echo $arg|cut -d "=" -f 1`
+		IP=`echo $arg|cut -d "=" -f 2`
+		sed -e "/${HOST}$/d" /etc/hosts > /tmp/hosts
+		echo "${IP}    ${HOST}" >> /tmp/hosts
+		cat /tmp/hosts > /etc/hosts
+	done
+fi

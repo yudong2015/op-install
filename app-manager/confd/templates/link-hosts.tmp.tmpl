@@ -1,11 +1,22 @@
 
-LINK_ID="external_service"
-ROLE="openpitrix-db"
+DB_ROLE="openpitrix-db"
+ETCD_ROLE="openpitrix-etcd"
+DB_LINK_ID="external_service_${DB_ROLE}"
+ETCD_LINK_ID="external_service_${ETCD_ROLE}"
 
-{{range $instance_id := lsdir (printf "/links/%s/hosts/%s/" $LINK_ID $ROLE)}}
-INSTANCE_ID={{$instance_id}}
+#get DB host ip
+{{range $instance_id := lsdir (printf "/links/%s/hosts/%s/" $LINK_ID $DB_ROLE)}}
+  DB_INSTANCE_ID={{$instance_id}}
 {{end}}
 
-
-DB_IP={{getv "/links/$LINK_ID/hosts/$ROLE/$INSTANCE_ID/ip"}}
+DB_IP={{getv "/links/$LINK_ID/hosts/$ROLE/$DB_INSTANCE_ID/ip"}}
 DB_HOST=$ROLE
+
+
+#get etcd host ip
+{{range $instance_id := lsdir (printf "/links/%s/hosts/%s/" $LINK_ID $ETCD_ROLE)}}
+  ETCD_INSTANCE_ID={{$instance_id}}
+{{end}}
+
+ETCD_IP={{getv "/links/$LINK_ID/hosts/$ROLE/$ETCD_INSTANCE_ID/ip"}}
+ETCD_HOST=$ROLE

@@ -10,11 +10,16 @@ echo "LOG_LEVEL: ${LOG_LEVEL}, GRPC_SHOW_ERROR_CASE: ${GRPC_SHOW_ERROR_CASE}." >
 
 DB_IP=`cat /opt/app-manager/link-hosts|grep DB_IP|cut -d "=" -f 2`
 DB_HOST=`cat /opt/app-manager/link-hosts|grep DB_HOST|cut -d "=" -f 2`
-
+ETCD_IP=`cat /opt/app-manager/link-hosts|grep ETCD_IP|cut -d "=" -f 2`
+ETCD_HOST=`cat /opt/app-manager/link-hosts|grep ETCD_HOST|cut -d "=" -f 2`
 echo "DB_IP:${DB_IP} DB_HOST:${DB_HOST}" >> /opt/app-manager/log
+echo "ETCD_IP:${DB_IP} ETCD_HOST:${DB_HOST}" >> /opt/app-manager/log
 
 #Start app-manager container
-docker run -it -d -p 9102:9102 -v /opt/app-manager:/opt \
+docker run -it -d -p 9102:9102 \
+		   -v /opt/app-manager/updateContainer:/opt \
+		   --add-host DB_HOST:DB_IP \
+		   --add-host ETCD_HOST:ETCD_IP \
  		   -e OPENPITRIX_LOG_LEVEL=${LOG_LEVEL} \
  		   -e OPENPITRIX_GRPC_SHOW_ERROR_CAUSE=${GRPC_SHOW_ERROR_CASE} \
  		   -e OPENPITRIX_MYSQL_DATABASE=app \

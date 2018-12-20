@@ -75,12 +75,20 @@
 				"required": "yes"
 			}]
 		},{
-            "key": "external_service",
-            "label": "External Service",
-    		"description": "Choose another application service to use, all the nodes in this external service will be added to hosts of current application service",
+            "key": "external_service_openpitrix_db",
+            "label": "Openpitrix DB",
+    		"description": "Openpitrix DB service is used for openpitrix-app-manager.",
      		"type": "service",
      		"default": "openpitrix-db",
-     		"required": "no",
+     		"required": "yes",
+     		"allowed_operations": ["add", "modify", "delete"]
+        },{
+            "key": "external_service_openpitrix_etcd",
+            "label": "Openpitrix Etcd",
+    		"description": "Openpitrix etcd service is used for openpitrix-app-manager",
+     		"type": "service",
+     		"default": "openpitrix-etcd",
+     		"required": "yes",
      		"allowed_operations": ["add", "modify", "delete"]
         }]
 	}, {
