@@ -7,7 +7,7 @@ PORT=2379
 
 #Start etcd container
 docker run -it -d -p ${PORT}:${PORT} \
-		--add-host ${ADVERTISE_CLIENT_URLS}:${HOST_IP}
+		--add-host ${ADVERTISE_CLIENT_URLS}:${HOST_IP} \
 		-v /opt/etcd/data:/data \
 		--restart=always \
 		--name ${CONTAINER_NAME} \
