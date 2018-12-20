@@ -1,0 +1,31 @@
+{
+	"name": {{cluster.name}},
+	"description": {{cluster.description}},
+	"vxnet": {{cluster.vxnet}},
+	"nodes": [{
+		"role": "openpitrix-etcd",
+		"container": {
+			"type": "kvm",
+			"image": "img-10s1igh8",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-etcd.count}},
+		"cpu": {{cluster.openpitrix-etcd.cpu}},
+		"memory": {{cluster.openpitrix-etcd.memory}},
+		"instance_class": {{cluster.openpitrix-etcd.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-etcd.volume_size}}
+		},
+		"services": {
+			"start": {
+				"cmd": "/opt/etcd/start.sh"
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-etcd"
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-etcd"
+			}
+		}
+	}]
+}
