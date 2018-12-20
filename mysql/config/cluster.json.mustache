@@ -6,7 +6,7 @@
 		"role": "openpitrix-db",
 		"container": {
 			"type": "kvm",
-			"image": "img-fp28ffu2",
+			"image": "img-fcfd21mk",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-db.count}},
@@ -18,7 +18,7 @@
 		},
 		"services": {
 			"start": {
-				"cmd": "/home/ubuntu/start.sh"
+				"cmd": "/opt/db/start.sh"
 			},
 			"stop": {
 				"cmd": "docker stop openpitrix-db"
