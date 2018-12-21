@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
-LOG_FILE="/opt/app-manager/log"
-echo "Start app-manager container..." >> ${LOG_FILE}
+source /opt/app-manager/log.sh
+log "Start app-manager container..."
 
 CONTAINER_NAME="openpitrix-app-manager"
-LOG_LEVEL=$(curl -s http://metadata/self/env/app_manager_log_level)
+LOG_LEVEL=$(curl -s http://metadata/self/env/openpitrix_log_level)
 GRPC_SHOW_ERROR_CASE=$(curl -s http://metadata/self/env/openpitrix_grpc_show_error_cause)
 
-echo "LOG_LEVEL: ${LOG_LEVEL}, GRPC_SHOW_ERROR_CASE: ${GRPC_SHOW_ERROR_CASE}." >> ${LOG_FILE}
+log "LOG_LEVEL: ${LOG_LEVEL}, GRPC_SHOW_ERROR_CASE: ${GRPC_SHOW_ERROR_CASE}."
 
 DB_HOST="openpitrix-db"
 ETCD_HOST="openpitrix-etcd"
 DB_IP=`cat /opt/app-manager/link-hosts|grep ${DB_HOST}|cut -d "=" -f 2`
 ETCD_IP=`cat /opt/app-manager/link-hosts|grep ${ETCD_HOST}|cut -d "=" -f 2`
-echo "DB_IP:${DB_IP} DB_HOST:${DB_HOST}" >> ${LOG_FILE}
-echo "ETCD_IP:${DB_IP} ETCD_HOST:${DB_HOST}" >> ${LOG_FILE}
+log "DB_IP:${DB_IP} DB_HOST:${DB_HOST}"
+log "ETCD_IP:${DB_IP} ETCD_HOST:${DB_HOST}"
 
 #Start app-manager container
 docker run -it -d -p 9102:9102 \
@@ -29,4 +29,4 @@ docker run -it -d -p 9102:9102 \
  		   --name ${CONTAINER_NAME} \
  		   openpitrix:latest app-manager
 
-echo "App-manager started." >> ${LOG_FILE}
+log "App-manager started."

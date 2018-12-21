@@ -96,8 +96,8 @@
 		"description": "Application configuration properties",
 		"type": "array",
 		"properties": [{
-			"key": "app_manager_log_level",
-			"label": "app_manager_log_level",
+			"key": "openpitrix_log_level",
+			"label": "openpitrix_log_level",
 			"description": "The log level of openpitrix-app-manager service.",
 			"type": "string",
 			"default": "info",
