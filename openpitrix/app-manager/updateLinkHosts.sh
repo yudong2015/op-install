@@ -13,8 +13,8 @@ log "ETCD_IP:${ETCD_IP} ETCD_HOST:${ETCD_HOST}"
 #update local hosts
 ORIGIN_HOSTS="/opt/app-manager/origin-hosts"
 LINK_HOSTS_TMP="/opt/app-manager/link-hosts.tmp"
-log "${DB_IP} ${DB_HOST}" > ${LINK_HOSTS_TMP}
-log "${ETCD_IP} ${ETCD_HOST}" >> ${LINK_HOSTS_TMP}
+echo "${DB_IP} ${DB_HOST}" > ${LINK_HOSTS_TMP}
+echo "${ETCD_IP} ${ETCD_HOST}" >> ${LINK_HOSTS_TMP}
 
 if [ ! -f "${ORIGIN_HOSTS}" ]; then
 	cp /etc/hosts ${ORIGIN_HOSTS}
