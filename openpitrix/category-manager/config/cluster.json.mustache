@@ -10,7 +10,7 @@
 		"role": "openpitrix-category-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-cb990vf7",
+			"image": "img-porrxz1n",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-category-manager.count}},
@@ -22,11 +22,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/app-manager/init.sh",
+				"cmd": "USER=root /opt/category-manager/init.sh",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/app-manager/start.sh",
+				"cmd": "USER=root /opt/category-manager/start.sh",
 				"timeout": 600
 			},
 			"stop": {
@@ -45,6 +45,7 @@
 	}],
 	"env": {
 		"openpitrix_log_level": {{env.openpitrix_log_level}},
-		"openpitrix_grpc_show_error_cause": {{env.openpitrix_grpc_show_error_cause}}
+		"openpitrix_grpc_show_error_cause": {{env.openpitrix_grpc_show_error_cause}},
+		"category_manager_port": {{env.category_manager_port}}
 	}
 }

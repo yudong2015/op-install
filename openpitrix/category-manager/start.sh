@@ -6,6 +6,7 @@ log "Start category-manager container..."
 CONTAINER_NAME="openpitrix-category-manager"
 LOG_LEVEL=$(curl -s http://metadata/self/env/openpitrix_log_level)
 GRPC_SHOW_ERROR_CASE=$(curl -s http://metadata/self/env/openpitrix_grpc_show_error_cause)
+SERVICE_PORT=$(curl -s http://metadata/self/env/category_manager_port)
 
 log "LOG_LEVEL: ${LOG_LEVEL}, GRPC_SHOW_ERROR_CASE: ${GRPC_SHOW_ERROR_CASE}."
 
@@ -17,7 +18,7 @@ log "DB_IP:${DB_IP} DB_HOST:${DB_HOST}"
 log "ETCD_IP:${DB_IP} ETCD_HOST:${DB_HOST}"
 
 #Start category-manager container
-docker run -it -d -p 9102:9102 \
+docker run -it -d -p ${SERVICE_PORT}:${SERVICE_PORT} \
 		   -v /opt/category-manager/updateContainer:/opt \
 		   --add-host ${DB_HOST}:${DB_IP} \
 		   --add-host ${ETCD_HOST}:${ETCD_IP} \

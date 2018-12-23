@@ -111,6 +111,13 @@
 			"default": 1,
 			"range": [0, 1],
 			"required": "yes"
+		},{
+			"key": "category_manager_port",
+			"label": "category_manager_port",
+			"description": "category_manager service port.",
+			"type": "integer",
+			"default": 9113,
+			"required": "yes"
 		}]
 	}]
 }
