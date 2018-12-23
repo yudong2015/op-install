@@ -1,0 +1,123 @@
+{
+	"type": "array",
+	"properties": [{
+		"key": "cluster",
+		"description": "cluster properties",
+		"type": "array",
+		"properties": [{
+			"key": "name",
+			"type": "string",
+			"label": "Name",
+			"description": "The name of the application",
+			"default": "openpitrix-repo-manager",
+			"required": "no"
+		}, {
+			"key": "description",
+			"type": "string",
+			"label": "Description",
+			"description": "The description of the application",
+			"default": "the repo-manager service in openpitrix",
+			"required": "no"
+		}, {
+			"key": "vxnet",
+			"label": "VxNet",
+			"description": "The vxnet that the application will join",
+			"type": "string",
+			"default": "",
+			"required": "yes"
+		}, {
+			"key": "openpitrix-repo-manager",
+			"description": "the repo-manager service of openpitrix",
+			"label": "openpitrix-repo-manager",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		},{
+            "key": "external_service_openpitrix-db",
+            "label": "Openpitrix DB",
+    		"description": "Openpitrix DB service is used for openpitrix-repo-manager.",
+     		"type": "service",
+     		"default": "openpitrix-db",
+     		"required": "yes",
+     		"allowed_operations": ["add", "modify", "delete"]
+        },{
+            "key": "external_service_openpitrix-etcd",
+            "label": "Openpitrix Etcd",
+    		"description": "Openpitrix etcd service is used for openpitrix-repo-manager",
+     		"type": "service",
+     		"default": "openpitrix-etcd",
+     		"required": "yes",
+     		"allowed_operations": ["add", "modify", "delete"]
+        }]
+	}, {
+		"key": "env",
+		"description": "Application configuration properties",
+		"type": "array",
+		"properties": [{
+			"key": "openpitrix_log_level",
+			"label": "openpitrix_log_level",
+			"description": "The log level of openpitrix-repo-manager service.",
+			"type": "string",
+			"default": "info",
+			"range": ["debug", "info", "warn", "error", "fatal"],
+			"required": "yes"
+		},{
+			"key": "openpitrix_grpc_show_error_cause",
+			"label": "openpitrix_grpc_show_error_cause",
+			"description": "openpitrix_grpc show error cause.",
+			"type": "integer",
+			"default": 1,
+			"range": [0, 1],
+			"required": "yes"
+		},{
+			"key": "repo_manager_port",
+			"label": "repo_manager_port",
+			"description": "repo_manager service port.",
+			"type": "integer",
+			"default": 9101,
+			"required": "yes"
+		}]
+	}]
+}
