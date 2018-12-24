@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-source /opt/openpitrix/cmd/log.sh
+CMD_DIR="/opt/openpitrix/cmd"
+source ${CMD_DIR}/log.sh
 
 #####################################################
 # get service name
-if [[ -n "$1" ]];then
-  SERVICE=$1
+if [[ -n "$1" ]]; then
+	SERVICE=$1
 else
 	log "ERROR: The service name is empty!"
 	log 'usage: /opt/openpitrix/cmd/start.sh $SERVICE_NAME [$COMMAND]'
@@ -22,7 +23,7 @@ fi
 #####################################################
 # consisting all kinds of params of container, and start container
 log "Start ${SERVICE} container..."
-UPDATE_CONTAINER_DIR="/opt/openpitrix/cmd/updateContainer"
+UPDATE_CONTAINER_DIR="${CMD_DIR}/container"
 LINK_HOSTS="${UPDATE_CONTAINER_DIR}/link-hosts"
 
 CONTAINER_NAME="openpitrix-${SERVICE}"
@@ -39,8 +40,7 @@ log "DB: ${DB}."
 
 #Container ADD_HOSTS PORTs, VOLUMEs, ENVs, IMG
 ADD_HOSTS=""
-for line in $(cat ${LINK_HOSTS})
-do
+for line in $(cat ${LINK_HOSTS}); do
 	if [[ -n "$line" ]]; then
 		ADD_HOSTS="${ADD_HOSTS} --add-host ${line}"
 	fi
@@ -57,7 +57,7 @@ if [[ ${SERVICE} == "minio" ]]; then
 	IMG="minio/minio:RELEASE.2018-09-25T21-34-43Z"
 	VOLUMES="$VOLUMES -v /opt/data/minio:/data"
 	ENVS="-e MINIO_ACCESS_KEY=${ACCESS_KEY} -e MINIO_SECRET_KEY=${SECRET_KEY}"
-elif [[ ${SERVICE} == "app-manager" ||  ${SERVICE} == "repo-indexer" ]]; then
+elif [[ ${SERVICE} == "app-manager" || ${SERVICE} == "repo-indexer" ]]; then
 	ENVS="$ENVS -e OPENPITRIX_PROFILING_ENABLE=1"
 elif [[ ${SERVICE} == "iam-service" ]]; then
 	ID=$(curl -s http://metadata/self/env/iam_init_client_id)
@@ -94,13 +94,12 @@ fi
 log "docker run -it -d ${ADD_HOSTS} ${PORTS} ${VOLUMES} ${ENVS} --restart=always --name ${CONTAINER_NAME} ${IMG} ${COMMAND}"
 
 docker run -it -d \
-   ${ADD_HOSTS} \
-   ${PORTS} \
-   ${VOLUMES} \
-   ${ENVS} \
-   --restart=always \
-   --name ${CONTAINER_NAME} \
-   ${IMG} ${COMMAND}
+	${ADD_HOSTS} \
+	${PORTS} \
+	${VOLUMES} \
+	${ENVS} \
+	--restart=always \
+	--name ${CONTAINER_NAME} \
+	${IMG} ${COMMAND}
 
 log "The ${SERVICE} container is running..."
-

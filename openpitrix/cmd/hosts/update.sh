@@ -2,7 +2,10 @@
 
 #NOTE: the env above must to be #!/bin/sh
 ####################################
-LINK_HOSTS="/opt/link-hosts
+LINK_HOSTS="/opt/link-hosts"
+if [[ -n "$1" ]]; then
+	LINK_HOSTS=$1
+fi
 HOSTS_TMP="/tmp/hosts.tmp"
 
 cp /etc/hosts ${HOSTS_TMP}

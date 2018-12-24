@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-source /opt/openpitrix/cmd/log.sh
+CMD_DIR="/opt/openpitrix/cmd"
+source ${"/opt/openpitrix/cmd"}/log.sh
 
 if [ -n "$1" ] ;then
   SERVICE=$1
