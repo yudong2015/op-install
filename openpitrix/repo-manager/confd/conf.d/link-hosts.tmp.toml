@@ -1,5 +1,0 @@
-[template]
-src = "link-hosts.tmp.tmpl"
-dest = "/opt/repo-manager/link-hosts"
-keys = ["/",]
-reload_cmd ="/opt/repo-manager/updateLinkHosts.sh"
