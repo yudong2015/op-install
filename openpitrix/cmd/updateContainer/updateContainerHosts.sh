@@ -1,5 +1,6 @@
 #!/bin/sh
 
+#NOTE: the env above must to be #!/bin/sh
 
 if [ $# -gt 0 ]; then
 	for arg in $*

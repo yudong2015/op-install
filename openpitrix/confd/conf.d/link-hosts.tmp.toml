@@ -2,4 +2,4 @@
 src = "link-hosts.tmp.tmpl"
 dest = "/opt/openpitrix/link-hosts"
 keys = ["/",]
-reload_cmd ="/opt/openpitrix/updateLinkHosts.sh"
+reload_cmd ="/opt/openpitrix/cmd/updateLinkHosts.sh"

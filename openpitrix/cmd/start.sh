@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-source /opt/openpitrix/log.sh
+source /opt/openpitrix/cmd/log.sh
 
 # get service name
 if [[ -n "$1" ]];then
   SERVICE=$1
 else
 	log "The service name is empty!"
-	log "usage: /opt/openpitrix/start.sh $SERVICE_NAME [$COMMAND]"
+	log "usage: /opt/openpitrix/cmd/start.sh $SERVICE_NAME [$COMMAND]"
 fi
 
 # get command
@@ -36,7 +36,7 @@ log "ETCD_IP:${DB_IP} ETCD_HOST:${DB_HOST}"
 
 #Container PORTs, VOLUMEs, ENVs
 PORTS="-p ${SERVICE_PORT}:${SERVICE_PORT}"
-VOLUMES="-v /opt/openpitrix/updateContainer:/opt"
+VOLUMES="-v /opt/openpitrix/cmd/updateContainer:/opt"
 ENVS="-e OPENPITRIX_LOG_LEVEL=${LOG_LEVEL} -e OPENPITRIX_GRPC_SHOW_ERROR_CAUSE=${GRPC_SHOW_ERROR_CASE} -e OPENPITRIX_MYSQL_DATABASE=${DB}"
 
 if [[ ${SERVICE} == "app-manager" ||  ${SERVICE} == "repo-indexer" ]]; then

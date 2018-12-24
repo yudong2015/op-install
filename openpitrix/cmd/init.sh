@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-source /opt/openpitrix/log.sh
+source /opt/openpitrix/cmd/log.sh
 
 if [ -n "$1" ] ;then
   SERVICE=$1
 else
 	log "The service name is empty!"
-	log "eg: /opt/openpitrix/init.sh $SERVICE"
+	log "eg: /opt/openpitrix/cmd/init.sh $SERVICE"
 fi
 
 log "Start init db of ${SERVICE} ..."

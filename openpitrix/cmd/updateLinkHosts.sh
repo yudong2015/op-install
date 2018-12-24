@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source /opt/openpitrix/log.sh
+source /opt/openpitrix/cmd/log.sh
 log "Start updating link hosts..."
 
 DB_HOST="openpitrix-db"
