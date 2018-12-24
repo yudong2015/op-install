@@ -23,7 +23,7 @@
 		},
 		"services": { 
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh minio '-c mkdir -p /data/openpitrix-attachment /data/openpitrix-internal-repo/vmbased /data/openpitrix-internal-repo/helm && minio server /data'",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh minio '-c mkdir -p /data/openpitrix-attachment /data/openpitrix-internal-repo/vmbased /data/openpitrix-internal-repo/helm && minio server /data'",
 				"timeout": 600
 			},
 			"stop": {
@@ -56,11 +56,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/openpitrix/init.sh app-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/init.sh app-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh app-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh app-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -92,11 +92,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/openpitrix/init.sh category-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/init.sh category-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh category-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh category-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -128,11 +128,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/openpitrix/init.sh repo-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/init.sh repo-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh repo-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh repo-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -164,11 +164,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/openpitrix/init.sh repo-indexer",
+				"cmd": "USER=root /opt/openpitrix/cmd/init.sh repo-indexer",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh repo-indexer",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh repo-indexer",
 				"timeout": 600
 			},
 			"stop": {
@@ -200,11 +200,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/openpitrix/init.sh runtime-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/init.sh runtime-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh runtime-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh runtime-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -236,11 +236,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/openpitrix/init.sh job-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/init.sh job-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh job-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh job-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -272,11 +272,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/openpitrix/init.sh task-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/init.sh task-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh task-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh task-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -308,11 +308,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/openpitrix/init.sh cluster-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/init.sh cluster-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh cluster-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh cluster-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -344,11 +344,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/openpitrix/init.sh iam-service",
+				"cmd": "USER=root /opt/openpitrix/cmd/init.sh iam-service",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh iam-service",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh iam-service",
 				"timeout": 600
 			},
 			"stop": {
@@ -380,7 +380,7 @@
 		},
 		"services": {
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh pilot-service 'pilot -config=/opt/openpitrix/conf/pilot-config.json --openpitrix-ca-crt-file=/opt/openpitrix/conf/openpitrix-ca.crt --pilot-server-crt-file=/opt/openpitrix/conf/pilot-server.crt --pilot-server-key-file=/opt/openpitrix/conf/pilot-server.key --pilot-client-crt-file=/opt/openpitrix/conf/pilot-client.crt --pilot-client-key-file=/opt/openpitrix/conf/pilot-client.key serve'",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh pilot-service 'pilot -config=/opt/openpitrix/conf/pilot-config.json --openpitrix-ca-crt-file=/opt/openpitrix/conf/openpitrix-ca.crt --pilot-server-crt-file=/opt/openpitrix/conf/pilot-server.crt --pilot-server-key-file=/opt/openpitrix/conf/pilot-server.key --pilot-client-crt-file=/opt/openpitrix/conf/pilot-client.crt --pilot-client-key-file=/opt/openpitrix/conf/pilot-client.key serve'",
 				"timeout": 600
 			},
 			"stop": {
@@ -412,11 +412,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/openpitrix/init.sh market-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/init.sh market-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh market-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh market-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -448,11 +448,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/openpitrix/init.sh attachment-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/init.sh attachment-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh attachment-manager",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh attachment-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -484,7 +484,7 @@
 		},
 		"services": {
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh api-gateway",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh api-gateway",
 				"timeout": 600
 			},
 			"stop": {
@@ -516,7 +516,7 @@
 		},
 		"services": {
 			"start": {
-				"cmd": "USER=root /opt/openpitrix/start.sh dashboard",
+				"cmd": "USER=root /opt/openpitrix/cmd/start.sh dashboard",
 				"timeout": 600
 			},
 			"stop": {

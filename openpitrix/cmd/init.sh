@@ -5,8 +5,9 @@ source /opt/openpitrix/cmd/log.sh
 if [ -n "$1" ] ;then
   SERVICE=$1
 else
-	log "The service name is empty!"
-	log "eg: /opt/openpitrix/cmd/init.sh $SERVICE"
+	log "ERROR: The service name is empty!"
+	log 'usage: /opt/openpitrix/cmd/init.sh $SERVICE'
+	exit
 fi
 
 log "Start init db of ${SERVICE} ..."

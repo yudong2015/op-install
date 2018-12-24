@@ -2,14 +2,16 @@
 
 source /opt/openpitrix/cmd/log.sh
 
+#####################################################
 # get service name
 if [[ -n "$1" ]];then
   SERVICE=$1
 else
-	log "The service name is empty!"
-	log "usage: /opt/openpitrix/cmd/start.sh $SERVICE_NAME [$COMMAND]"
+	log "ERROR: The service name is empty!"
+	log 'usage: /opt/openpitrix/cmd/start.sh $SERVICE_NAME [$COMMAND]'
+	exit
 fi
-
+#####################################################
 # get command
 if [ -n "$2" ]; then
 	COMMAND=$2
@@ -17,7 +19,11 @@ else
 	COMMAND=$SERVICE
 fi
 
+#####################################################
+# consisting all kinds of params of container, and start container
 log "Start ${SERVICE} container..."
+UPDATE_CONTAINER_DIR="/opt/openpitrix/cmd/updateContainer"
+LINK_HOSTS="${UPDATE_CONTAINER_DIR}/link-hosts"
 
 CONTAINER_NAME="openpitrix-${SERVICE}"
 LOG_LEVEL=$(curl -s http://metadata/self/env/openpitrix_log_level)
@@ -25,18 +31,22 @@ GRPC_SHOW_ERROR_CASE=$(curl -s http://metadata/self/env/openpitrix_grpc_show_err
 SERVICE_PORT=$(curl -s http://metadata/self/env/${SERVICE}-port)
 DB=$(curl -s http://metadata/self/env/${SERVICE}-database)
 
-log "LOG_LEVEL: ${LOG_LEVEL}, GRPC_SHOW_ERROR_CASE: ${GRPC_SHOW_ERROR_CASE}."
+log "CONTAINER_NAME: ${CONTAINER_NAME}."
+log "LOG_LEVEL: ${LOG_LEVEL}."
+log "GRPC_SHOW_ERROR_CASE: ${GRPC_SHOW_ERROR_CASE}."
+log "SERVICE_PORT: ${SERVICE_PORT}."
+log "DB: ${DB}."
 
-DB_HOST="openpitrix-db"
-ETCD_HOST="openpitrix-etcd"
-DB_IP=`cat /opt/openpitrix/link-hosts|grep ${DB_HOST}|cut -d "=" -f 2`
-ETCD_IP=`cat /opt/openpitrix/link-hosts|grep ${ETCD_HOST}|cut -d "=" -f 2`
-log "DB_IP:${DB_IP} DB_HOST:${DB_HOST}"
-log "ETCD_IP:${ETCD_IP} ETCD_HOST:${ETCD_HOST}"
-
-#Container PORTs, VOLUMEs, ENVs
+#Container ADD_HOSTS PORTs, VOLUMEs, ENVs, IMG
+ADD_HOSTS=""
+for line in $(cat ${LINK_HOSTS})
+do
+	if [[ -n "$line" ]]; then
+		ADD_HOSTS="${ADD_HOSTS} --add-host ${line}"
+	fi
+done
 PORTS="-p ${SERVICE_PORT}:${SERVICE_PORT}"
-VOLUMES="-v /opt/openpitrix/cmd/updateContainer:/opt"
+VOLUMES="-v ${UPDATE_CONTAINER_DIR}:/opt"
 ENVS="-e OPENPITRIX_LOG_LEVEL=${LOG_LEVEL} -e OPENPITRIX_GRPC_SHOW_ERROR_CAUSE=${GRPC_SHOW_ERROR_CASE} -e OPENPITRIX_MYSQL_DATABASE=${DB}"
 IMG="openpitrix:latest"
 
@@ -81,9 +91,10 @@ elif [[ ${SERVICE} == "dashboard" ]]; then
 fi
 
 #Start container
+log "docker run -it -d ${ADD_HOSTS} ${PORTS} ${VOLUMES} ${ENVS} --restart=always --name ${CONTAINER_NAME} ${IMG} ${COMMAND}"
+
 docker run -it -d \
-   --add-host ${DB_HOST}:${DB_IP} \
-   --add-host ${ETCD_HOST}:${ETCD_IP} \
+   ${ADD_HOSTS} \
    ${PORTS} \
    ${VOLUMES} \
    ${ENVS} \
