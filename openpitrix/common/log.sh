@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-LOG_FILE="$(cd `dirname $0`; pwd)/log"
+LOG_FILE="$(cd `dirname $0`; pwd)/openpitrix.log"
 
 function log()
 {

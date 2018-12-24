@@ -1,0 +1,51 @@
+{
+	"name": {{cluster.name}},
+	"description": {{cluster.description}},
+	"vxnet": {{cluster.vxnet}},
+	"links": {
+        "external_service_openpitrix-db":{{cluster.external_service_openpitrix-db}},            
+        "external_service_openpitrix-etcd":{{cluster.external_service_openpitrix-etcd}}            
+    },
+	"nodes": [{
+		"role": "openpitrix-repo-indexer",
+		"container": {
+			"type": "kvm",
+			"image": "img-l333rddp",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-repo-indexer.count}},
+		"cpu": {{cluster.openpitrix-repo-indexer.cpu}},
+		"memory": {{cluster.openpitrix-repo-indexer.memory}},
+		"instance_class": {{cluster.openpitrix-repo-indexer.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-repo-indexer.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/repo-indexer/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/repo-indexer/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-repo-indexer",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-repo-indexer",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-repo-indexer",
+				"timeout": 600
+			}
+		}
+	}],
+	"env": {
+		"openpitrix_log_level": {{env.openpitrix_log_level}},
+		"openpitrix_grpc_show_error_cause": {{env.openpitrix_grpc_show_error_cause}},
+		"repo_indexer_port": {{env.repo_indexer_port}}
+	}
+}

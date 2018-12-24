@@ -1,0 +1,905 @@
+{
+	"type": "array",
+	"properties": [
+		{
+			"key": "cluster",
+			"description": "cluster properties",
+			"type": "array",
+			"properties": [{
+				"key": "name",
+				"type": "string",
+				"label": "Name",
+				"description": "The name of the application",
+				"default": "openpitrix",
+				"required": "no"
+			}, {
+				"key": "description",
+				"type": "string",
+				"label": "Description",
+				"description": "The description of the application",
+				"default": "the services of openpitrix",
+				"required": "no"
+			}, {
+				"key": "vxnet",
+				"label": "VxNet",
+				"description": "The vxnet that the application will join",
+				"type": "string",
+				"default": "",
+				"required": "yes"
+			}, {
+	            "key": "external_service_openpitrix-db",
+	            "label": "Openpitrix DB",
+	    		"description": "Openpitrix DB service is used for openpitrix-app-manager.",
+	     		"type": "service",
+	     		"default": "openpitrix-db",
+	     		"required": "yes",
+	     		"allowed_operations": ["add", "modify", "delete"]
+	        }, {
+	            "key": "external_service_openpitrix-etcd",
+	            "label": "Openpitrix Etcd",
+	    		"description": "Openpitrix etcd service is used for openpitrix-app-manager",
+	     		"type": "service",
+	     		"default": "openpitrix-etcd",
+	     		"required": "yes",
+	     		"allowed_operations": ["add", "modify", "delete"]
+	        }, {
+				"key": "openpitrix-app-manager",
+				"description": "the app-manager service of openpitrix",
+				"label": "openpitrix-app-manager",
+				"type": "array",
+				"properties": [{
+					"key": "cpu",
+					"label": "CPU",
+					"description": "CPUs of each node",
+					"type": "integer",
+					"default": 1,
+					"range": [1, 2, 4, 8, 16],
+					"required": "yes"
+				}, {
+					"key": "memory",
+					"label": "Memory",
+					"description": "Memory of each node (in MiB)",
+					"type": "integer",
+					"default": 1024,
+					"range": [1024, 2048, 4096, 8192],
+					"required": "yes"
+				}, {
+					"key": "instance_class",
+					"label": "Instance Class",
+					"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+					"type": "integer",
+					"default": 0,
+					"range": [0, 1],
+					"required": "yes"
+				}, {
+					"key": "count",
+					"label": "Count",
+					"description": "Number of nodes for the cluster to create",
+					"type": "integer",
+					"default": 1,
+					"max": 10,
+					"min": 1,
+					"required": "yes"
+				}, {
+					"key": "volume_size",
+					"label": "Volume Size",
+					"description": "The volume size for each instance",
+					"type": "integer",
+					"default": 10,
+					"min": 10,
+					"max": 1000,
+					"step": 10,
+					"required": "yes"
+				}]
+			},{
+			"key": "openpitrix-category-manager",
+			"description": "the category-manager service of openpitrix",
+			"label": "openpitrix-category-manager",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		}, {
+			"key": "openpitrix-category-manager",
+			"description": "the category-manager service of openpitrix",
+			"label": "openpitrix-category-manager",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		}, {
+			"key": "openpitrix-repo-manager",
+			"description": "the repo-manager service of openpitrix",
+			"label": "openpitrix-repo-manager",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		},{
+			"key": "openpitrix-repo-indexer",
+			"description": "the repo-indexer service of openpitrix",
+			"label": "openpitrix-repo-indexer",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		},{
+			"key": "openpitrix-runtime-manager",
+			"description": "the runtime-manager service of openpitrix",
+			"label": "openpitrix-runtime-manager",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		},{
+			"key": "openpitrix-job-manager",
+			"description": "the job-manager service of openpitrix",
+			"label": "openpitrix-job-manager",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		},{
+			"key": "openpitrix-task-manager",
+			"description": "the task-manager service of openpitrix",
+			"label": "openpitrix-task-manager",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		},{
+			"key": "openpitrix-cluster-manager",
+			"description": "the cluster-manager service of openpitrix",
+			"label": "openpitrix-cluster-manager",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		},{
+			"key": "openpitrix-iam-service",
+			"description": "the iam-service service of openpitrix",
+			"label": "openpitrix-iam-service",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		},{
+			"key": "openpitrix-pilot-service",
+			"description": "the pilot-service service of openpitrix",
+			"label": "openpitrix-pilot-service",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		},{
+			"key": "openpitrix-market-manager",
+			"description": "the market-manager service of openpitrix",
+			"label": "openpitrix-market-manager",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		},{
+			"key": "openpitrix-attachment-manager",
+			"description": "the attachment-manager service of openpitrix",
+			"label": "openpitrix-attachment-manager",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		}]
+		}, {
+			"key": "env",
+			"description": "Application configuration properties",
+			"type": "array",
+			"properties": [{
+				"key": "openpitrix_log_level",
+				"label": "openpitrix_log_level",
+				"description": "The log level of openpitrix-app-manager service.",
+				"type": "string",
+				"default": "info",
+				"range": ["debug", "info", "warn", "error", "fatal"],
+				"required": "yes"
+			},{
+				"key": "openpitrix_grpc_show_error_cause",
+				"label": "openpitrix_grpc_show_error_cause",
+				"description": "openpitrix_grpc show error cause.",
+				"type": "integer",
+				"default": 1,
+				"range": [0, 1],
+				"required": "yes"
+			},{
+				"key": "iam_init_client_id",
+				"label": "iam_init_client_id",
+				"description": "iam service init client id.",
+				"type": "string",
+				"default": "x",
+				"required": "yes"
+			},{
+				"key": "iam_init_client_secret",
+				"label": "iam_init_client_secret",
+				"description": "iam service init client secret.",
+				"type": "string",
+				"default": "y",
+				"required": "yes"
+			},{
+				"key": "iam_init_account_email",
+				"label": "iam_init_account_email",
+				"description": "iam service init account email.",
+				"type": "string",
+				"default": "admin@op.com",
+				"required": "yes"
+			},{
+				"key": "iam_init_account_password",
+				"label": "iam_init_account_password",
+				"description": "iam service init account password.",
+				"type": "string",
+				"default": "passw0rd",
+				"required": "yes"
+			},
+
+			{
+				"key": "app-manager-port",
+				"label": "app-manager-port",
+				"description": "app-manager service port.",
+				"type": "integer",
+				"default": 9102,
+				"required": "yes"
+			},{
+				"key": "category-manager-port",
+				"label": "category-manager-port",
+				"description": "category-manager service port.",
+				"type": "integer",
+				"default": 9113,
+				"required": "yes"
+			},{
+				"key": "repo-manager-port",
+				"label": "repo-manager-port",
+				"description": "repo-manager service port.",
+				"type": "integer",
+				"default": 9101,
+				"required": "yes"
+			},{
+				"key": "repo-indexer-port",
+				"label": "repo-indexer-port",
+				"description": "repo-indexer service port.",
+				"type": "integer",
+				"default": 9108,
+				"required": "yes"
+			},{
+				"key": "runtime-manager-port",
+				"label": "runtime-manager-port",
+				"description": "runtime-manager service port.",
+				"type": "integer",
+				"default": 9103,
+				"required": "yes"
+			},{
+				"key": "job-manager-port",
+				"label": "job-manager-port",
+				"description": "job-manager service port.",
+				"type": "integer",
+				"default": 9106,
+				"required": "yes"
+			},{
+				"key": "task-manager-port",
+				"label": "task-manager-port",
+				"description": "task-manager service port.",
+				"type": "integer",
+				"default": 9107,
+				"required": "yes"
+			},{
+				"key": "cluster-manager-port",
+				"label": "cluster-manager-port",
+				"description": "cluster-manager service port.",
+				"type": "integer",
+				"default": 9104,
+				"required": "yes"
+			},{
+				"key": "iam-service-port",
+				"label": "iam-service-port",
+				"description": "iam-service port.",
+				"type": "integer",
+				"default": 9115,
+				"required": "yes"
+			},{
+				"key": "pilot-service-port",
+				"label": "pilot-service-port",
+				"description": "pilot-service port.",
+				"type": "integer",
+				"default": 9110,
+				"required": "yes"
+			},{
+				"key": "pilot-TlsListen-port",
+				"label": "pilot-TlsListen-port",
+				"description": "pilot-service TlsListen port.",
+				"type": "integer",
+				"default": 9114,
+				"required": "yes"
+			},{
+				"key": "market-manager-port",
+				"label": "market-manager-port",
+				"description": "market-manager service port.",
+				"type": "integer",
+				"default": 9117,
+				"required": "yes"
+			},{
+				"key": "attachment-manager-port",
+				"label": "attachment-manager-port",
+				"description": "attachment-manager service port.",
+				"type": "integer",
+				"default": 9120,
+				"required": "yes"
+			},
+
+			{
+				"key": "app-manager-database",
+				"label": "app-manager-database",
+				"description": "app-manager service database.",
+				"type": "string",
+				"default": "app",
+				"required": "yes"
+			},{
+				"key": "category-manager-database",
+				"label": "category-manager-database",
+				"description": "category-manager service database.",
+				"type": "string",
+				"default": "app",
+				"required": "yes"
+			},{
+				"key": "repo-manager-database",
+				"label": "repo-manager-database",
+				"description": "repo-manager service database.",
+				"type": "string",
+				"default": "repo",
+				"required": "yes"
+			},{
+				"key": "repo-indexer-database",
+				"label": "repo-indexer-database",
+				"description": "repo-indexer service database.",
+				"type": "string",
+				"default": "repo",
+				"required": "yes"
+			},{
+				"key": "runtime-manager-database",
+				"label": "runtime-manager-database",
+				"description": "runtime-manager service database.",
+				"type": "string",
+				"default": "runtime",
+				"required": "yes"
+			},{
+				"key": "job-manager-database",
+				"label": "job-manager-database",
+				"description": "job-manager service database.",
+				"type": "string",
+				"default": "job",
+				"required": "yes"
+			},{
+				"key": "task-manager-database",
+				"label": "task-manager-database",
+				"description": "task-manager service database.",
+				"type": "string",
+				"default": "task",
+				"required": "yes"
+			},{
+				"key": "cluster-manager-database",
+				"label": "cluster-manager-database",
+				"description": "cluster-manager service database.",
+				"type": "string",
+				"default": "cluster",
+				"required": "yes"
+			},{
+				"key": "iam-service-database",
+				"label": "iam-service-database",
+				"description": "iam-service service database.",
+				"type": "string",
+				"default": "iam",
+				"required": "yes"
+			},{
+				"key": "market-manager-database",
+				"label": "market-manager-database",
+				"description": "market-manager service database.",
+				"type": "string",
+				"default": "market",
+				"required": "yes"
+			},{
+				"key": "attachment-manager-database",
+				"label": "attachment-manager-database",
+				"description": "attachment-manager service database.",
+				"type": "string",
+				"default": "attachment",
+				"required": "yes"
+			}]
+	}]
+}

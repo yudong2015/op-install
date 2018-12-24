@@ -1,0 +1,477 @@
+{
+{
+	"name": {{cluster.name}},
+	"description": {{cluster.description}},
+	"vxnet": {{cluster.vxnet}},
+	"links": {
+        "external_service_openpitrix-db":{{cluster.external_service_openpitrix-db}},            
+        "external_service_openpitrix-etcd":{{cluster.external_service_openpitrix-etcd}}            
+    },
+	"nodes": [{
+		"role": "openpitrix-app-manager",
+		"container": {
+			"type": "kvm",
+			"image": "img-8z368jjg",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-app-manager.count}},
+		"cpu": {{cluster.openpitrix-app-manager.cpu}},
+		"memory": {{cluster.openpitrix-app-manager.memory}},
+		"instance_class": {{cluster.openpitrix-app-manager.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-app-manager.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/app-manager/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/app-manager/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-app-manager",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-app-manager",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-app-manager",
+				"timeout": 600
+			}
+		}
+	},{
+		"role": "openpitrix-category-manager",
+		"container": {
+			"type": "kvm",
+			"image": "img-porrxz1n",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-category-manager.count}},
+		"cpu": {{cluster.openpitrix-category-manager.cpu}},
+		"memory": {{cluster.openpitrix-category-manager.memory}},
+		"instance_class": {{cluster.openpitrix-category-manager.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-category-manager.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/category-manager/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/category-manager/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-category-manager",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-category-manager",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-category-manager",
+				"timeout": 600
+			}
+		}
+	},{
+		"role": "openpitrix-repo-manager",
+		"container": {
+			"type": "kvm",
+			"image": "img-izbi53cl",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-repo-manager.count}},
+		"cpu": {{cluster.openpitrix-repo-manager.cpu}},
+		"memory": {{cluster.openpitrix-repo-manager.memory}},
+		"instance_class": {{cluster.openpitrix-repo-manager.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-repo-manager.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/repo-manager/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/repo-manager/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-repo-manager",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-repo-manager",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-repo-manager",
+				"timeout": 600
+			}
+		}
+	},{
+		"role": "openpitrix-repo-indexer",
+		"container": {
+			"type": "kvm",
+			"image": "img-l333rddp",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-repo-indexer.count}},
+		"cpu": {{cluster.openpitrix-repo-indexer.cpu}},
+		"memory": {{cluster.openpitrix-repo-indexer.memory}},
+		"instance_class": {{cluster.openpitrix-repo-indexer.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-repo-indexer.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/repo-indexer/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/repo-indexer/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-repo-indexer",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-repo-indexer",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-repo-indexer",
+				"timeout": 600
+			}
+		}
+	},{
+		"role": "openpitrix-runtime-manager",
+		"container": {
+			"type": "kvm",
+			"image": "img-l333rddp",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-runtime-manager.count}},
+		"cpu": {{cluster.openpitrix-runtime-manager.cpu}},
+		"memory": {{cluster.openpitrix-runtime-manager.memory}},
+		"instance_class": {{cluster.openpitrix-runtime-manager.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-runtime-manager.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/runtime-manager/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/runtime-manager/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-runtime-manager",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-runtime-manager",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-runtime-manager",
+				"timeout": 600
+			}
+		}
+	},{
+		"role": "openpitrix-job-manager",
+		"container": {
+			"type": "kvm",
+			"image": "img-l333rddp",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-job-manager.count}},
+		"cpu": {{cluster.openpitrix-job-manager.cpu}},
+		"memory": {{cluster.openpitrix-job-manager.memory}},
+		"instance_class": {{cluster.openpitrix-job-manager.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-job-manager.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/job-manager/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/job-manager/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-job-manager",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-job-manager",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-job-manager",
+				"timeout": 600
+			}
+		}
+	},{
+		"role": "openpitrix-task-manager",
+		"container": {
+			"type": "kvm",
+			"image": "img-l333rddp",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-task-manager.count}},
+		"cpu": {{cluster.openpitrix-task-manager.cpu}},
+		"memory": {{cluster.openpitrix-task-manager.memory}},
+		"instance_class": {{cluster.openpitrix-task-manager.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-task-manager.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/task-manager/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/task-manager/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-task-manager",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-task-manager",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-task-manager",
+				"timeout": 600
+			}
+		}
+	},{
+		"role": "openpitrix-cluster-manager",
+		"container": {
+			"type": "kvm",
+			"image": "img-l333rddp",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-cluster-manager.count}},
+		"cpu": {{cluster.openpitrix-cluster-manager.cpu}},
+		"memory": {{cluster.openpitrix-cluster-manager.memory}},
+		"instance_class": {{cluster.openpitrix-cluster-manager.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-cluster-manager.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/cluster-manager/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/cluster-manager/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-cluster-manager",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-cluster-manager",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-cluster-manager",
+				"timeout": 600
+			}
+		}
+	},{
+		"role": "openpitrix-iam-service",
+		"container": {
+			"type": "kvm",
+			"image": "img-l333rddp",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-iam-service.count}},
+		"cpu": {{cluster.openpitrix-iam-service.cpu}},
+		"memory": {{cluster.openpitrix-iam-service.memory}},
+		"instance_class": {{cluster.openpitrix-iam-service.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-iam-service.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/iam-service/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/iam-service/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-iam-service",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-iam-service",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-iam-service",
+				"timeout": 600
+			}
+		}
+	},{
+		"role": "openpitrix-pilot-service",
+		"container": {
+			"type": "kvm",
+			"image": "img-l333rddp",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-pilot-service.count}},
+		"cpu": {{cluster.openpitrix-pilot-service.cpu}},
+		"memory": {{cluster.openpitrix-pilot-service.memory}},
+		"instance_class": {{cluster.openpitrix-pilot-service.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-pilot-service.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/pilot-service/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/pilot-service/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-pilot-service",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-pilot-service",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-pilot-service",
+				"timeout": 600
+			}
+		}
+	},{
+		"role": "openpitrix-market-manager",
+		"container": {
+			"type": "kvm",
+			"image": "img-l333rddp",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-market-manager.count}},
+		"cpu": {{cluster.openpitrix-market-manager.cpu}},
+		"memory": {{cluster.openpitrix-market-manager.memory}},
+		"instance_class": {{cluster.openpitrix-market-manager.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-market-manager.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/market-manager/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/market-manager/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-market-manager",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-market-manager",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-market-manager",
+				"timeout": 600
+			}
+		}
+	},{
+		"role": "openpitrix-attachment-manager",
+		"container": {
+			"type": "kvm",
+			"image": "img-l333rddp",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-attachment-manager.count}},
+		"cpu": {{cluster.openpitrix-attachment-manager.cpu}},
+		"memory": {{cluster.openpitrix-attachment-manager.memory}},
+		"instance_class": {{cluster.openpitrix-attachment-manager.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-attachment-manager.volume_size}}
+		},
+		"services": {
+			"init": {
+				"cmd": "USER=root /opt/attachment-manager/init.sh",
+				"timeout": 600
+			}, 
+			"start": {
+				"cmd": "USER=root /opt/attachment-manager/start.sh",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-attachment-manager",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-attachment-manager",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-attachment-manager",
+				"timeout": 600
+			}
+		}
+	}],
+	"env": {
+		"openpitrix_log_level": {{env.openpitrix_log_level}},
+		"openpitrix_grpc_show_error_cause": {{env.openpitrix_grpc_show_error_cause}},
+		"iam_init_client_id": {{env.iam_init_client_id}},
+		"iam_init_client_secret": {{env.iam_init_client_secret}},
+		"iam_init_account_email": {{env.iam_init_account_email}},
+		"iam_init_account_password": {{env.iam_init_account_password}},
+		
+		"app-manager-port": {{env.app-manager-port}},
+		"categrory-manager-port": {{env.categrory-manager-port}},
+		"repo-manager-port": {{env.repo-manager-port}},
+		"repo-indexer-port": {{env.repo-indexer-port}},
+		"runtime-manager-port": {{env.runtime-manager-port}},
+		"job-manager-port": {{env.job-manager-port}},
+		"task-manager-port": {{env.task-manager-port}},
+		"cluster-manager-port": {{env.cluster-manager-port}},
+		"iam-service-port": {{env.iam-service-port}},
+		"pilot-service-port": {{env.pilot-service-port}},
+		"pilot-TlsListen-port": {{env.pilot-TlsListen-port}},
+		"market-manager-port": {{env.market-manager-port}},
+		"attachment-manager-port": {{env.attachment-manager-port}},
+
+		"app-manager-database": {{env.app-manager-database}},
+		"categrory-manager-database": {{env.categrory-manager-database}},
+		"repo-manager-database": {{env.repo-manager-database}},
+		"repo-indexer-database": {{env.repo-indexer-database}},
+		"runtime-manager-database": {{env.runtime-manager-database}},
+		"job-manager-database": {{env.job-manager-database}},
+		"task-manager-database": {{env.task-manager-database}},
+		"cluster-manager-database": {{env.cluster-manager-database}},
+		"iam-service-database": {{env.iam-service-database}},
+		"market-manager-database": {{env.market-manager-database}},
+		"attachment-manager-database": {{env.attachment-manager-database}}
+	}
+}
