@@ -141,55 +141,6 @@
 				"required": "yes"
 			}]
 		}, {
-			"key": "openpitrix-category-manager",
-			"description": "the category-manager service of openpitrix",
-			"label": "openpitrix-category-manager",
-			"type": "array",
-			"properties": [{
-				"key": "cpu",
-				"label": "CPU",
-				"description": "CPUs of each node",
-				"type": "integer",
-				"default": 1,
-				"range": [1, 2, 4, 8, 16],
-				"required": "yes"
-			}, {
-				"key": "memory",
-				"label": "Memory",
-				"description": "Memory of each node (in MiB)",
-				"type": "integer",
-				"default": 1024,
-				"range": [1024, 2048, 4096, 8192],
-				"required": "yes"
-			}, {
-				"key": "instance_class",
-				"label": "Instance Class",
-				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
-				"type": "integer",
-				"default": 0,
-				"range": [0, 1],
-				"required": "yes"
-			}, {
-				"key": "count",
-				"label": "Count",
-				"description": "Number of nodes for the cluster to create",
-				"type": "integer",
-				"default": 1,
-				"max": 10,
-				"min": 1,
-				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
-				"required": "yes"
-			}]
-		}, {
 			"key": "openpitrix-repo-manager",
 			"description": "the repo-manager service of openpitrix",
 			"label": "openpitrix-repo-manager",

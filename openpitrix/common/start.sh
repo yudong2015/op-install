@@ -2,12 +2,19 @@
 
 source /opt/openpitrix/log.sh
 
-if [ -n "$1" ] && [ -n "$2" ] ;then
+# get service name
+if [[ -n "$1" ]];then
   SERVICE=$1
-  COMMAND=$2
 else
-	log "The service name or start command is empty!"
-	log "eg: /opt/openpitrix/start.sh $SERVICE $COMMAND"
+	log "The service name is empty!"
+	log "usage: /opt/openpitrix/start.sh $SERVICE_NAME [$COMMAND]"
+fi
+
+# get command
+if [ -n "$2" ]; then
+	COMMAND=$2
+else
+	COMMAND=$SERVICE
 fi
 
 log "Start ${SERVICE} container..."
@@ -32,28 +39,23 @@ PORTS="-p ${SERVICE_PORT}:${SERVICE_PORT}"
 VOLUMES="-v /opt/openpitrix/updateContainer:/opt"
 ENVS="-e OPENPITRIX_LOG_LEVEL=${LOG_LEVEL} -e OPENPITRIX_GRPC_SHOW_ERROR_CAUSE=${GRPC_SHOW_ERROR_CASE} -e OPENPITRIX_MYSQL_DATABASE=${DB}"
 
-if [[ ${SERVICE} == "app-manager" ||  ${SERVICE} == "repo-indexer" ]]; 
-	then
+if [[ ${SERVICE} == "app-manager" ||  ${SERVICE} == "repo-indexer" ]]; then
 		ENVS="$ENVS -e OPENPITRIX_PROFILING_ENABLE=1"
-elif [[ ${SERVICE} == "iam-service" ]]; 
-	then
+elif [[ ${SERVICE} == "iam-service" ]]; then
 		ID=$(curl -s http://metadata/self/env/iam_init_client_id)
 		SECRET=$(curl -s http://metadata/self/env/iam_init_client_secret)
 		EMAIL=$(curl -s http://metadata/self/env/iam_init_account_email)
 		PASSWORD=$(curl -s http://metadata/self/env/iam_init_account_password)
 		ENVS="$ENVS -e IAM_INIT_CLIENT_ID=${ID} IAM_INIT_CLIENT_SECRET=${SECRET} IAM_INIT_ACCOUNT_EMAIL=${EMAIL} IAM_INIT_ACCOUNT_PASSWORD=${PASSWORD}"
-	fi
-elif [[ ${SERVICE} == "pilot-service" ]]; 
-	then
+elif [[ ${SERVICE} == "pilot-service" ]]; then
 		TLSLISTEN_PORT=$(curl -s http://metadata/self/env/pilot-TlsListen-port)
 		PORTS="${PORTS} -p ${TLSLISTEN_PORT}:${TLSLISTEN_PORT}"
 		VOLUMES="${VOLUMES} -v /opt/openpitrix/pilot-service/pilot-config.json:/opt/openpitrix/conf/pilot-config.json"
-		VOLUMES="${VOLUMES} -v /opt/openpitrix/pilot-service/kubernetes/tls-config/openpitrix-ca.crt:/opt/openpitrix/conf/openpitrix-ca.crt"
-		VOLUMES="${VOLUMES} -v /opt/openpitrix/pilot-service/kubernetes/tls-config/pilot-server.crt:/opt/openpitrix/conf/pilot-server.crt"
-		VOLUMES="${VOLUMES} -v /opt/openpitrix/pilot-service/kubernetes/tls-config/pilot-server.key:/opt/openpitrix/conf/pilot-server.key"
-		VOLUMES="${VOLUMES} -v /opt/openpitrix/pilot-service/kubernetes/tls-config/pilot-client.crt:/opt/openpitrix/conf/pilot-client.crt"
-		VOLUMES="${VOLUMES} -v /opt/openpitrix/pilot-service/kubernetes/tls-config/pilot-client.key:/opt/openpitrix/conf/pilot-client.key"
-	fi
+		VOLUMES="${VOLUMES} -v /opt/openpitrix/kubernetes/tls-config/openpitrix-ca.crt:/opt/openpitrix/conf/openpitrix-ca.crt"
+		VOLUMES="${VOLUMES} -v /opt/openpitrix/kubernetes/tls-config/pilot-server.crt:/opt/openpitrix/conf/pilot-server.crt"
+		VOLUMES="${VOLUMES} -v /opt/openpitrix/kubernetes/tls-config/pilot-server.key:/opt/openpitrix/conf/pilot-server.key"
+		VOLUMES="${VOLUMES} -v /opt/openpitrix/kubernetes/tls-config/pilot-client.crt:/opt/openpitrix/conf/pilot-client.crt"
+		VOLUMES="${VOLUMES} -v /opt/openpitrix/kubernetes/tls-config/pilot-client.key:/opt/openpitrix/conf/pilot-client.key"
 fi
 
 #Start container

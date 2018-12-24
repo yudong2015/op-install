@@ -1,5 +1,4 @@
 {
-{
 	"name": {{cluster.name}},
 	"description": {{cluster.description}},
 	"vxnet": {{cluster.vxnet}},
@@ -7,11 +6,12 @@
         "external_service_openpitrix-db":{{cluster.external_service_openpitrix-db}},            
         "external_service_openpitrix-etcd":{{cluster.external_service_openpitrix-etcd}}            
     },
-	"nodes": [{
+	"nodes": [
+	{
 		"role": "openpitrix-app-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-8z368jjg",
+			"image": "img-8bogialj",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-app-manager.count}},
@@ -23,11 +23,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/app-manager/init.sh",
+				"cmd": "USER=root /opt/openpitrix/init.sh app-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/app-manager/start.sh",
+				"cmd": "USER=root /opt/openpitrix/start.sh app-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -47,7 +47,7 @@
 		"role": "openpitrix-category-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-porrxz1n",
+			"image": "img-8bogialj",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-category-manager.count}},
@@ -59,11 +59,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/category-manager/init.sh",
+				"cmd": "USER=root /opt/openpitrix/init.sh category-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/category-manager/start.sh",
+				"cmd": "USER=root /opt/openpitrix/start.sh category-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -83,7 +83,7 @@
 		"role": "openpitrix-repo-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-izbi53cl",
+			"image": "img-8bogialj",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-repo-manager.count}},
@@ -95,11 +95,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/repo-manager/init.sh",
+				"cmd": "USER=root /opt/openpitrix/init.sh repo-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/repo-manager/start.sh",
+				"cmd": "USER=root /opt/openpitrix/start.sh repo-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -119,7 +119,7 @@
 		"role": "openpitrix-repo-indexer",
 		"container": {
 			"type": "kvm",
-			"image": "img-l333rddp",
+			"image": "img-8bogialj",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-repo-indexer.count}},
@@ -131,11 +131,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/repo-indexer/init.sh",
+				"cmd": "USER=root /opt/openpitrix/init.sh repo-indexer",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/repo-indexer/start.sh",
+				"cmd": "USER=root /opt/openpitrix/start.sh repo-indexer",
 				"timeout": 600
 			},
 			"stop": {
@@ -155,7 +155,7 @@
 		"role": "openpitrix-runtime-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-l333rddp",
+			"image": "img-8bogialj",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-runtime-manager.count}},
@@ -167,11 +167,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/runtime-manager/init.sh",
+				"cmd": "USER=root /opt/openpitrix/init.sh runtime-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/runtime-manager/start.sh",
+				"cmd": "USER=root /opt/openpitrix/start.sh runtime-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -191,7 +191,7 @@
 		"role": "openpitrix-job-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-l333rddp",
+			"image": "img-8bogialj",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-job-manager.count}},
@@ -203,11 +203,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/job-manager/init.sh",
+				"cmd": "USER=root /opt/openpitrix/init.sh job-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/job-manager/start.sh",
+				"cmd": "USER=root /opt/openpitrix/start.sh job-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -227,7 +227,7 @@
 		"role": "openpitrix-task-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-l333rddp",
+			"image": "img-8bogialj",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-task-manager.count}},
@@ -239,11 +239,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/task-manager/init.sh",
+				"cmd": "USER=root /opt/openpitrix/init.sh task-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/task-manager/start.sh",
+				"cmd": "USER=root /opt/openpitrix/start.sh task-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -263,7 +263,7 @@
 		"role": "openpitrix-cluster-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-l333rddp",
+			"image": "img-8bogialj",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-cluster-manager.count}},
@@ -275,11 +275,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/cluster-manager/init.sh",
+				"cmd": "USER=root /opt/openpitrix/init.sh cluster-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/cluster-manager/start.sh",
+				"cmd": "USER=root /opt/openpitrix/start.sh cluster-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -299,7 +299,7 @@
 		"role": "openpitrix-iam-service",
 		"container": {
 			"type": "kvm",
-			"image": "img-l333rddp",
+			"image": "img-8bogialj",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-iam-service.count}},
@@ -311,11 +311,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/iam-service/init.sh",
+				"cmd": "USER=root /opt/openpitrix/init.sh iam-service",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/iam-service/start.sh",
+				"cmd": "USER=root /opt/openpitrix/start.sh iam-service",
 				"timeout": 600
 			},
 			"stop": {
@@ -335,7 +335,7 @@
 		"role": "openpitrix-pilot-service",
 		"container": {
 			"type": "kvm",
-			"image": "img-l333rddp",
+			"image": "img-8bogialj",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-pilot-service.count}},
@@ -347,11 +347,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/pilot-service/init.sh",
+				"cmd": "USER=root /opt/openpitrix/init.sh pilot-service",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/pilot-service/start.sh",
+				"cmd": "USER=root /opt/openpitrix/start.sh pilot-service 'pilot -config=/opt/openpitrix/conf/pilot-config.json --openpitrix-ca-crt-file=/opt/openpitrix/conf/openpitrix-ca.crt --pilot-server-crt-file=/opt/openpitrix/conf/pilot-server.crt --pilot-server-key-file=/opt/openpitrix/conf/pilot-server.key --pilot-client-crt-file=/opt/openpitrix/conf/pilot-client.crt --pilot-client-key-file=/opt/openpitrix/conf/pilot-client.key serve'",
 				"timeout": 600
 			},
 			"stop": {
@@ -371,7 +371,7 @@
 		"role": "openpitrix-market-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-l333rddp",
+			"image": "img-8bogialj",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-market-manager.count}},
@@ -383,11 +383,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/market-manager/init.sh",
+				"cmd": "USER=root /opt/openpitrix/init.sh market-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/market-manager/start.sh",
+				"cmd": "USER=root /opt/openpitrix/start.sh market-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -407,7 +407,7 @@
 		"role": "openpitrix-attachment-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-l333rddp",
+			"image": "img-8bogialj",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-attachment-manager.count}},
@@ -419,11 +419,11 @@
 		},
 		"services": {
 			"init": {
-				"cmd": "USER=root /opt/attachment-manager/init.sh",
+				"cmd": "USER=root /opt/openpitrix/init.sh attachment-manager",
 				"timeout": 600
 			}, 
 			"start": {
-				"cmd": "USER=root /opt/attachment-manager/start.sh",
+				"cmd": "USER=root /opt/openpitrix/start.sh attachment-manager",
 				"timeout": 600
 			},
 			"stop": {
@@ -449,7 +449,7 @@
 		"iam_init_account_password": {{env.iam_init_account_password}},
 		
 		"app-manager-port": {{env.app-manager-port}},
-		"categrory-manager-port": {{env.categrory-manager-port}},
+		"category-manager-port": {{env.category-manager-port}},
 		"repo-manager-port": {{env.repo-manager-port}},
 		"repo-indexer-port": {{env.repo-indexer-port}},
 		"runtime-manager-port": {{env.runtime-manager-port}},
@@ -463,7 +463,7 @@
 		"attachment-manager-port": {{env.attachment-manager-port}},
 
 		"app-manager-database": {{env.app-manager-database}},
-		"categrory-manager-database": {{env.categrory-manager-database}},
+		"category-manager-database": {{env.category-manager-database}},
 		"repo-manager-database": {{env.repo-manager-database}},
 		"repo-indexer-database": {{env.repo-indexer-database}},
 		"runtime-manager-database": {{env.runtime-manager-database}},
