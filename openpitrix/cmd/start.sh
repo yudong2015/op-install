@@ -45,8 +45,8 @@ for line in $(cat ${LINK_HOSTS}); do
 		ADD_HOSTS="${ADD_HOSTS} --add-host ${line}"
 	fi
 done
+VOLUMES="-v /etc/hosts:/etc/hosts"
 PORTS="-p ${SERVICE_PORT}:${SERVICE_PORT}"
-VOLUMES="-v ${UPDATE_CONTAINER_DIR}:/opt"
 ENVS="-e OPENPITRIX_LOG_LEVEL=${LOG_LEVEL} -e OPENPITRIX_GRPC_SHOW_ERROR_CAUSE=${GRPC_SHOW_ERROR_CASE} -e OPENPITRIX_MYSQL_DATABASE=${DB}"
 IMG="openpitrix:latest"
 
@@ -64,7 +64,8 @@ elif [[ ${SERVICE} == "iam-service" ]]; then
 	SECRET=$(curl -s http://metadata/self/env/iam_init_client_secret)
 	EMAIL=$(curl -s http://metadata/self/env/iam_init_account_email)
 	PASSWORD=$(curl -s http://metadata/self/env/iam_init_account_password)
-	ENVS="$ENVS -e IAM_INIT_CLIENT_ID=${ID} IAM_INIT_CLIENT_SECRET=${SECRET} IAM_INIT_ACCOUNT_EMAIL=${EMAIL} IAM_INIT_ACCOUNT_PASSWORD=${PASSWORD}"
+	ENVS="$ENVS -e IAM_INIT_CLIENT_ID=${ID} -e IAM_INIT_CLIENT_SECRET=${SECRET}"
+	ENVS="$ENVS -e IAM_INIT_ACCOUNT_EMAIL=${EMAIL} -e IAM_INIT_ACCOUNT_PASSWORD=${PASSWORD}"
 elif [[ ${SERVICE} == "pilot-service" ]]; then
 	TLSLISTEN_PORT=$(curl -s http://metadata/self/env/pilot-TlsListen-port)
 	PORTS="${PORTS} -p ${TLSLISTEN_PORT}:${TLSLISTEN_PORT}"
@@ -79,7 +80,7 @@ elif [[ ${SERVICE} == "api-gateway" ]]; then
 	ENVS="-e OPENPITRIX_LOG_LEVEL=${LOG_LEVEL}"
 elif [[ ${SERVICE} == "dashboard" ]]; then
 	API_GATEWAY_PORT=$(curl -s http://metadata/self/env/api-gateway-port)
-	API_VERSION=$(curl -s http://metadata/self/env/api-version)
+	API_VERSION=$(curl -s http://metadata/self/env/api_version)
 	ID=$(curl -s http://metadata/self/env/iam_init_client_id)
 	SECRET=$(curl -s http://metadata/self/env/iam_init_client_secret)
 	ENVS="-e serverUrl=http://openpitrix-api-gateway:${API_GATEWAY_PORT}"

@@ -1,6 +1,6 @@
 [template]
 src = "link-hosts.tmp.tmpl"
-dest = "/opt/openpitrix/cmd/hosts/link-hosts"
+dest = "/opt/openpitrix/cmd/link-hosts"
 keys = [
     "/hosts",
     "/links",
