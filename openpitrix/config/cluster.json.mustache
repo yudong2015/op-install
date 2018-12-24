@@ -8,10 +8,43 @@
     },
 	"nodes": [
 	{
+		"role": "openpitrix-minio",
+		"container": {
+			"type": "kvm",
+			"image": "img-9aln92b7",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-minio.count}},
+		"cpu": {{cluster.openpitrix-minio.cpu}},
+		"memory": {{cluster.openpitrix-minio.memory}},
+		"instance_class": {{cluster.openpitrix-minio.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-minio.volume_size}}
+		},
+		"services": { 
+			"start": {
+				"cmd": "USER=root /opt/openpitrix/start.sh minio '-c mkdir -p /data/openpitrix-attachment /data/openpitrix-internal-repo/vmbased /data/openpitrix-internal-repo/helm && minio server /data'",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-minio",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-minio",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-minio",
+				"timeout": 600
+			}
+		}
+	},
+	{
 		"role": "openpitrix-app-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-svcjedyj",
+			"image": "img-9aln92b7",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-app-manager.count}},
@@ -47,7 +80,7 @@
 		"role": "openpitrix-category-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-svcjedyj",
+			"image": "img-9aln92b7",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-category-manager.count}},
@@ -83,7 +116,7 @@
 		"role": "openpitrix-repo-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-svcjedyj",
+			"image": "img-9aln92b7",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-repo-manager.count}},
@@ -119,7 +152,7 @@
 		"role": "openpitrix-repo-indexer",
 		"container": {
 			"type": "kvm",
-			"image": "img-svcjedyj",
+			"image": "img-9aln92b7",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-repo-indexer.count}},
@@ -155,7 +188,7 @@
 		"role": "openpitrix-runtime-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-svcjedyj",
+			"image": "img-9aln92b7",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-runtime-manager.count}},
@@ -191,7 +224,7 @@
 		"role": "openpitrix-job-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-svcjedyj",
+			"image": "img-9aln92b7",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-job-manager.count}},
@@ -227,7 +260,7 @@
 		"role": "openpitrix-task-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-svcjedyj",
+			"image": "img-9aln92b7",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-task-manager.count}},
@@ -263,7 +296,7 @@
 		"role": "openpitrix-cluster-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-svcjedyj",
+			"image": "img-9aln92b7",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-cluster-manager.count}},
@@ -299,7 +332,7 @@
 		"role": "openpitrix-iam-service",
 		"container": {
 			"type": "kvm",
-			"image": "img-svcjedyj",
+			"image": "img-9aln92b7",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-iam-service.count}},
@@ -335,7 +368,7 @@
 		"role": "openpitrix-pilot-service",
 		"container": {
 			"type": "kvm",
-			"image": "img-svcjedyj",
+			"image": "img-9aln92b7",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-pilot-service.count}},
@@ -346,10 +379,6 @@
 			"size": {{cluster.openpitrix-pilot-service.volume_size}}
 		},
 		"services": {
-			"init": {
-				"cmd": "USER=root /opt/openpitrix/init.sh pilot-service",
-				"timeout": 600
-			}, 
 			"start": {
 				"cmd": "USER=root /opt/openpitrix/start.sh pilot-service 'pilot -config=/opt/openpitrix/conf/pilot-config.json --openpitrix-ca-crt-file=/opt/openpitrix/conf/openpitrix-ca.crt --pilot-server-crt-file=/opt/openpitrix/conf/pilot-server.crt --pilot-server-key-file=/opt/openpitrix/conf/pilot-server.key --pilot-client-crt-file=/opt/openpitrix/conf/pilot-client.crt --pilot-client-key-file=/opt/openpitrix/conf/pilot-client.key serve'",
 				"timeout": 600
@@ -371,7 +400,7 @@
 		"role": "openpitrix-market-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-svcjedyj",
+			"image": "img-9aln92b7",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-market-manager.count}},
@@ -407,7 +436,7 @@
 		"role": "openpitrix-attachment-manager",
 		"container": {
 			"type": "kvm",
-			"image": "img-svcjedyj",
+			"image": "img-9aln92b7",
 			"zone": "ap2a"
 		},
 		"count": {{cluster.openpitrix-attachment-manager.count}},
@@ -439,15 +468,83 @@
 				"timeout": 600
 			}
 		}
+	},{
+		"role": "openpitrix-api-gateway",
+		"container": {
+			"type": "kvm",
+			"image": "img-9aln92b7",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-api-gateway.count}},
+		"cpu": {{cluster.openpitrix-api-gateway.cpu}},
+		"memory": {{cluster.openpitrix-api-gateway.memory}},
+		"instance_class": {{cluster.openpitrix-api-gateway.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-api-gateway.volume_size}}
+		},
+		"services": {
+			"start": {
+				"cmd": "USER=root /opt/openpitrix/start.sh api-gateway",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-api-gateway",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-api-gateway",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-api-gateway",
+				"timeout": 600
+			}
+		}
+	},{
+		"role": "openpitrix-dashboard",
+		"container": {
+			"type": "kvm",
+			"image": "img-9aln92b7",
+			"zone": "ap2a"
+		},
+		"count": {{cluster.openpitrix-dashboard.count}},
+		"cpu": {{cluster.openpitrix-dashboard.cpu}},
+		"memory": {{cluster.openpitrix-dashboard.memory}},
+		"instance_class": {{cluster.openpitrix-dashboard.instance_class}},
+		"volume": {
+			"size": {{cluster.openpitrix-dashboard.volume_size}}
+		},
+		"services": {
+			"start": {
+				"cmd": "USER=root /opt/openpitrix/start.sh dashboard",
+				"timeout": 600
+			},
+			"stop": {
+				"cmd": "docker stop openpitrix-dashboard",
+				"timeout": 600
+			},
+			"restart": {
+				"cmd": "docker restart openpitrix-dashboard",
+				"timeout": 600
+			},
+			"destroy": {
+				"cmd": "docker rm -f openpitrix-dashboard",
+				"timeout": 600
+			}
+		}
 	}],
 	"env": {
+		"minio_access_key": {{env.minio_access_key}},
+		"minio_secret_key": {{env.minio_secret_key}},
 		"openpitrix_log_level": {{env.openpitrix_log_level}},
 		"openpitrix_grpc_show_error_cause": {{env.openpitrix_grpc_show_error_cause}},
 		"iam_init_client_id": {{env.iam_init_client_id}},
 		"iam_init_client_secret": {{env.iam_init_client_secret}},
 		"iam_init_account_email": {{env.iam_init_account_email}},
 		"iam_init_account_password": {{env.iam_init_account_password}},
+		"api_version": {{env.api_version}},
 		
+		"minio-port": {{env.minio-port}},
 		"app-manager-port": {{env.app-manager-port}},
 		"category-manager-port": {{env.category-manager-port}},
 		"repo-manager-port": {{env.repo-manager-port}},
@@ -461,6 +558,8 @@
 		"pilot-TlsListen-port": {{env.pilot-TlsListen-port}},
 		"market-manager-port": {{env.market-manager-port}},
 		"attachment-manager-port": {{env.attachment-manager-port}},
+		"api-gateway-port": {{env.api-gateway-port}},
+		"dashboard-port": {{env.dashboard-port}},
 
 		"app-manager-database": {{env.app-manager-database}},
 		"category-manager-database": {{env.category-manager-database}},

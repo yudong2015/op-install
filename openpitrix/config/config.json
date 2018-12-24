@@ -43,6 +43,55 @@
 	     		"required": "yes",
 	     		"allowed_operations": ["add", "modify", "delete"]
 	        }, {
+				"key": "openpitrix-minio",
+				"description": "the minio service of openpitrix",
+				"label": "openpitrix-minio",
+				"type": "array",
+				"properties": [{
+					"key": "cpu",
+					"label": "CPU",
+					"description": "CPUs of each node",
+					"type": "integer",
+					"default": 1,
+					"range": [1, 2, 4, 8, 16],
+					"required": "yes"
+				}, {
+					"key": "memory",
+					"label": "Memory",
+					"description": "Memory of each node (in MiB)",
+					"type": "integer",
+					"default": 1024,
+					"range": [1024, 2048, 4096, 8192],
+					"required": "yes"
+				}, {
+					"key": "instance_class",
+					"label": "Instance Class",
+					"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+					"type": "integer",
+					"default": 0,
+					"range": [0, 1],
+					"required": "yes"
+				}, {
+					"key": "count",
+					"label": "Count",
+					"description": "Number of nodes for the cluster to create",
+					"type": "integer",
+					"default": 1,
+					"max": 10,
+					"min": 1,
+					"required": "yes"
+				}, {
+					"key": "volume_size",
+					"label": "Volume Size",
+					"description": "The volume size for each instance",
+					"type": "integer",
+					"default": 10,
+					"min": 10,
+					"max": 1000,
+					"step": 10,
+					"required": "yes"
+				}]
+			},{
 				"key": "openpitrix-app-manager",
 				"description": "the app-manager service of openpitrix",
 				"label": "openpitrix-app-manager",
@@ -630,12 +679,124 @@
 				"step": 10,
 				"required": "yes"
 			}]
+		},{
+			"key": "openpitrix-api-gateway",
+			"description": "the api-gateway service of openpitrix",
+			"label": "openpitrix-api-gateway",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
+		},{
+			"key": "openpitrix-dashboard",
+			"description": "the dashboard service of openpitrix",
+			"label": "openpitrix-dashboard",
+			"type": "array",
+			"properties": [{
+				"key": "cpu",
+				"label": "CPU",
+				"description": "CPUs of each node",
+				"type": "integer",
+				"default": 1,
+				"range": [1, 2, 4, 8, 16],
+				"required": "yes"
+			}, {
+				"key": "memory",
+				"label": "Memory",
+				"description": "Memory of each node (in MiB)",
+				"type": "integer",
+				"default": 1024,
+				"range": [1024, 2048, 4096, 8192],
+				"required": "yes"
+			}, {
+				"key": "instance_class",
+				"label": "Instance Class",
+				"description": "The instance type for the cluster to run，such as high performance，high performance plus",
+				"type": "integer",
+				"default": 0,
+				"range": [0, 1],
+				"required": "yes"
+			}, {
+				"key": "count",
+				"label": "Count",
+				"description": "Number of nodes for the cluster to create",
+				"type": "integer",
+				"default": 1,
+				"max": 10,
+				"min": 1,
+				"required": "yes"
+			}, {
+				"key": "volume_size",
+				"label": "Volume Size",
+				"description": "The volume size for each instance",
+				"type": "integer",
+				"default": 10,
+				"min": 10,
+				"max": 1000,
+				"step": 10,
+				"required": "yes"
+			}]
 		}]
 		}, {
 			"key": "env",
 			"description": "Application configuration properties",
 			"type": "array",
 			"properties": [{
+				"key": "minio_access_key",
+				"label": "minio_access_key",
+				"description": "The access key of minio service.",
+				"type": "string",
+				"default": "openpitrixminioaccesskey",
+				"required": "yes"
+			},{
+				"key": "minio_secret_key",
+				"label": "minio_secret_key",
+				"description": "The secret key of minio service.",
+				"type": "string",
+				"default": "openpitrixminiosecretkey",
+				"required": "yes"
+			},{
 				"key": "openpitrix_log_level",
 				"label": "openpitrix_log_level",
 				"description": "The log level of openpitrix-app-manager service.",
@@ -673,6 +834,13 @@
 				"default": "admin@op.com",
 				"required": "yes"
 			},{
+				"key": "api_version",
+				"label": "api_version",
+				"description": "The version of api.",
+				"type": "string",
+				"default": "v1",
+				"required": "yes"
+			},{
 				"key": "iam_init_account_password",
 				"label": "iam_init_account_password",
 				"description": "iam service init account password.",
@@ -681,6 +849,14 @@
 				"required": "yes"
 			},
 
+			{
+				"key": "minio-port",
+				"label": "minio-port",
+				"description": "minio service port.",
+				"type": "integer",
+				"default": 9000,
+				"required": "yes"
+			},
 			{
 				"key": "app-manager-port",
 				"label": "app-manager-port",
@@ -771,6 +947,20 @@
 				"description": "attachment-manager service port.",
 				"type": "integer",
 				"default": 9120,
+				"required": "yes"
+			},{
+				"key": "api-gateway-port",
+				"label": "api-gateway-port",
+				"description": "api-gateway service port.",
+				"type": "integer",
+				"default": 9100,
+				"required": "yes"
+			},{
+				"key": "dashboard-port",
+				"label": "dashboard-port",
+				"description": "dashboard service port.",
+				"type": "integer",
+				"default": 8000,
 				"required": "yes"
 			},
 

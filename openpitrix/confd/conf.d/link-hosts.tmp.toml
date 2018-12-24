@@ -1,5 +1,8 @@
 [template]
 src = "link-hosts.tmp.tmpl"
 dest = "/opt/openpitrix/link-hosts"
-keys = ["/",]
+keys = [
+    "/hosts",
+    "/links",
+]
 reload_cmd ="/opt/openpitrix/cmd/updateLinkHosts.sh"

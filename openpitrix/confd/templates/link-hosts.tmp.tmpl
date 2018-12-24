@@ -3,3 +3,8 @@
 {{range $instance_id := lsdir (printf "/links/%s/hosts/%s/" $link_id $role)}}{{$ip := getv (printf "/links/%s/hosts/%s/%s/ip" $link_id $role $instance_id)}}
 {{$role}}={{$ip}}
 {{end}}{{end}}{{end}}
+
+{{range $role := lsdir (printf "/hosts/")}}
+{{range $instance_id := lsdir (printf "/hosts/%s/" $role)}}{{$ip := getv (printf "/hosts/%s/%s/ip" $role $instance_id)}}
+{{$role}}={{$ip}}
+{{end}}{{end}}
