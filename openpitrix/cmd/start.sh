@@ -9,7 +9,7 @@ if [[ -n "$1" ]]; then
 	SERVICE=$1
 else
 	log "ERROR: The service name is empty!"
-	log 'usage: /opt/openpitrix/cmd/start.sh $SERVICE_NAME [$COMMAND]'
+	log "Usage: ${CMD_DIR}/start.sh SERVICE_NAME [COMMAND]"
 	exit
 fi
 #####################################################
@@ -23,7 +23,7 @@ fi
 #####################################################
 # consisting all kinds of params of container, and start container
 log "Start ${SERVICE} container..."
-UPDATE_CONTAINER_DIR="${CMD_DIR}/container"
+UPDATE_CONTAINER_DIR="${CMD_DIR}/hosts"
 LINK_HOSTS="${UPDATE_CONTAINER_DIR}/link-hosts"
 
 CONTAINER_NAME="openpitrix-${SERVICE}"

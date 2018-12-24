@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 CMD_DIR="/opt/openpitrix/cmd"
-source ${"/opt/openpitrix/cmd"}/log.sh
+source ${CMD_DIR}/log.sh
 
 if [ -n "$1" ] ;then
   SERVICE=$1
 else
 	log "ERROR: The service name is empty!"
-	log 'usage: /opt/openpitrix/cmd/init.sh $SERVICE'
+	log "Usage: /opt/openpitrix/cmd/init.sh SERVICE_NAME"
 	exit
 fi
 
