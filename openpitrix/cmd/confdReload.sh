@@ -5,12 +5,14 @@ source ${CMD_DIR}/log.sh
 log "Start updating hosts..."
 
 #update local hosts
+log "Start updating local hosts..."
 LINK_HOSTS="${CMD_DIR}/hosts/link-hosts"
-${CMD_DIR}/hosts/update.sh LINK_HOSTS
+${CMD_DIR}/hosts/update.sh $LINK_HOSTS
 
 #update running container hosts
+log "Start updating container hosts..."
 CONTAINER_NUM=`docker ps|grep openpitrix|wc -l`
-if [ ${CONTAINER_NUM} -gt 0 ]; then
+if [[ ${CONTAINER_NUM} -gt 0 ]]; then
 	for CONTAINER_NAME in `docker ps|grep openpitrix|awk '{print $NF}'`
 	do
 		log "Run update ip of DB and etcd in $CONTAINER_NAME container..."
