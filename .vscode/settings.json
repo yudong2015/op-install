@@ -1,4 +1,3 @@
 {
-    "editor.formatOnType": true,
-    "editor.find.autoFindInSelection": true
+    "editor.formatOnType": true
 }

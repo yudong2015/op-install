@@ -19,7 +19,9 @@
 		"memory": {{cluster.openpitrix-minio.memory}},
 		"instance_class": {{cluster.openpitrix-minio.instance_class}},
 		"volume": {
-			"size": {{cluster.openpitrix-minio.volume_size}}
+			"size": {{cluster.openpitrix-minio.volume_size}},
+			"mount_point": "/opt/data",
+			"filesystem": "ext4"
 		},
 		"services": { 
 			"start": {
@@ -51,9 +53,6 @@
 		"cpu": {{cluster.openpitrix-app-manager.cpu}},
 		"memory": {{cluster.openpitrix-app-manager.memory}},
 		"instance_class": {{cluster.openpitrix-app-manager.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-app-manager.volume_size}}
-		},
 		"services": {
 			"init": {
 				"cmd": "USER=root /opt/openpitrix/cmd/init.sh app-manager",
@@ -87,9 +86,6 @@
 		"cpu": {{cluster.openpitrix-category-manager.cpu}},
 		"memory": {{cluster.openpitrix-category-manager.memory}},
 		"instance_class": {{cluster.openpitrix-category-manager.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-category-manager.volume_size}}
-		},
 		"services": {
 			"init": {
 				"cmd": "USER=root /opt/openpitrix/cmd/init.sh category-manager",
@@ -123,9 +119,6 @@
 		"cpu": {{cluster.openpitrix-repo-manager.cpu}},
 		"memory": {{cluster.openpitrix-repo-manager.memory}},
 		"instance_class": {{cluster.openpitrix-repo-manager.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-repo-manager.volume_size}}
-		},
 		"services": {
 			"init": {
 				"cmd": "USER=root /opt/openpitrix/cmd/init.sh repo-manager",
@@ -159,9 +152,6 @@
 		"cpu": {{cluster.openpitrix-repo-indexer.cpu}},
 		"memory": {{cluster.openpitrix-repo-indexer.memory}},
 		"instance_class": {{cluster.openpitrix-repo-indexer.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-repo-indexer.volume_size}}
-		},
 		"services": {
 			"init": {
 				"cmd": "USER=root /opt/openpitrix/cmd/init.sh repo-indexer",
@@ -195,9 +185,6 @@
 		"cpu": {{cluster.openpitrix-runtime-manager.cpu}},
 		"memory": {{cluster.openpitrix-runtime-manager.memory}},
 		"instance_class": {{cluster.openpitrix-runtime-manager.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-runtime-manager.volume_size}}
-		},
 		"services": {
 			"init": {
 				"cmd": "USER=root /opt/openpitrix/cmd/init.sh runtime-manager",
@@ -231,9 +218,6 @@
 		"cpu": {{cluster.openpitrix-job-manager.cpu}},
 		"memory": {{cluster.openpitrix-job-manager.memory}},
 		"instance_class": {{cluster.openpitrix-job-manager.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-job-manager.volume_size}}
-		},
 		"services": {
 			"init": {
 				"cmd": "USER=root /opt/openpitrix/cmd/init.sh job-manager",
@@ -267,9 +251,6 @@
 		"cpu": {{cluster.openpitrix-task-manager.cpu}},
 		"memory": {{cluster.openpitrix-task-manager.memory}},
 		"instance_class": {{cluster.openpitrix-task-manager.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-task-manager.volume_size}}
-		},
 		"services": {
 			"init": {
 				"cmd": "USER=root /opt/openpitrix/cmd/init.sh task-manager",
@@ -303,9 +284,6 @@
 		"cpu": {{cluster.openpitrix-cluster-manager.cpu}},
 		"memory": {{cluster.openpitrix-cluster-manager.memory}},
 		"instance_class": {{cluster.openpitrix-cluster-manager.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-cluster-manager.volume_size}}
-		},
 		"services": {
 			"init": {
 				"cmd": "USER=root /opt/openpitrix/cmd/init.sh cluster-manager",
@@ -339,9 +317,6 @@
 		"cpu": {{cluster.openpitrix-iam-service.cpu}},
 		"memory": {{cluster.openpitrix-iam-service.memory}},
 		"instance_class": {{cluster.openpitrix-iam-service.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-iam-service.volume_size}}
-		},
 		"services": {
 			"init": {
 				"cmd": "USER=root /opt/openpitrix/cmd/init.sh iam-service",
@@ -375,9 +350,6 @@
 		"cpu": {{cluster.openpitrix-pilot-service.cpu}},
 		"memory": {{cluster.openpitrix-pilot-service.memory}},
 		"instance_class": {{cluster.openpitrix-pilot-service.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-pilot-service.volume_size}}
-		},
 		"services": {
 			"start": {
 				"cmd": "USER=root /opt/openpitrix/cmd/start.sh pilot-service 'pilot -config=/opt/openpitrix/conf/pilot-config.json --openpitrix-ca-crt-file=/opt/openpitrix/conf/openpitrix-ca.crt --pilot-server-crt-file=/opt/openpitrix/conf/pilot-server.crt --pilot-server-key-file=/opt/openpitrix/conf/pilot-server.key --pilot-client-crt-file=/opt/openpitrix/conf/pilot-client.crt --pilot-client-key-file=/opt/openpitrix/conf/pilot-client.key serve'",
@@ -407,9 +379,6 @@
 		"cpu": {{cluster.openpitrix-market-manager.cpu}},
 		"memory": {{cluster.openpitrix-market-manager.memory}},
 		"instance_class": {{cluster.openpitrix-market-manager.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-market-manager.volume_size}}
-		},
 		"services": {
 			"init": {
 				"cmd": "USER=root /opt/openpitrix/cmd/init.sh market-manager",
@@ -443,9 +412,6 @@
 		"cpu": {{cluster.openpitrix-attachment-manager.cpu}},
 		"memory": {{cluster.openpitrix-attachment-manager.memory}},
 		"instance_class": {{cluster.openpitrix-attachment-manager.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-attachment-manager.volume_size}}
-		},
 		"services": {
 			"init": {
 				"cmd": "USER=root /opt/openpitrix/cmd/init.sh attachment-manager",
@@ -479,9 +445,6 @@
 		"cpu": {{cluster.openpitrix-api-gateway.cpu}},
 		"memory": {{cluster.openpitrix-api-gateway.memory}},
 		"instance_class": {{cluster.openpitrix-api-gateway.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-api-gateway.volume_size}}
-		},
 		"services": {
 			"start": {
 				"cmd": "USER=root /opt/openpitrix/cmd/start.sh api-gateway",
@@ -511,9 +474,6 @@
 		"cpu": {{cluster.openpitrix-dashboard.cpu}},
 		"memory": {{cluster.openpitrix-dashboard.memory}},
 		"instance_class": {{cluster.openpitrix-dashboard.instance_class}},
-		"volume": {
-			"size": {{cluster.openpitrix-dashboard.volume_size}}
-		},
 		"services": {
 			"start": {
 				"cmd": "USER=root /opt/openpitrix/cmd/start.sh dashboard",

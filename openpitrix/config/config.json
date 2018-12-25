@@ -129,16 +129,6 @@
 					"max": 10,
 					"min": 1,
 					"required": "yes"
-				}, {
-					"key": "volume_size",
-					"label": "Volume Size",
-					"description": "The volume size for each instance",
-					"type": "integer",
-					"default": 10,
-					"min": 10,
-					"max": 1000,
-					"step": 10,
-					"required": "yes"
 				}]
 			},{
 			"key": "openpitrix-category-manager",
@@ -177,16 +167,6 @@
 				"default": 1,
 				"max": 10,
 				"min": 1,
-				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
 				"required": "yes"
 			}]
 		}, {
@@ -227,16 +207,6 @@
 				"max": 10,
 				"min": 1,
 				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
-				"required": "yes"
 			}]
 		},{
 			"key": "openpitrix-repo-indexer",
@@ -275,16 +245,6 @@
 				"default": 1,
 				"max": 10,
 				"min": 1,
-				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
 				"required": "yes"
 			}]
 		},{
@@ -325,16 +285,6 @@
 				"max": 10,
 				"min": 1,
 				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
-				"required": "yes"
 			}]
 		},{
 			"key": "openpitrix-job-manager",
@@ -373,16 +323,6 @@
 				"default": 1,
 				"max": 10,
 				"min": 1,
-				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
 				"required": "yes"
 			}]
 		},{
@@ -423,16 +363,6 @@
 				"max": 10,
 				"min": 1,
 				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
-				"required": "yes"
 			}]
 		},{
 			"key": "openpitrix-cluster-manager",
@@ -471,16 +401,6 @@
 				"default": 1,
 				"max": 10,
 				"min": 1,
-				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
 				"required": "yes"
 			}]
 		},{
@@ -521,16 +441,6 @@
 				"max": 10,
 				"min": 1,
 				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
-				"required": "yes"
 			}]
 		},{
 			"key": "openpitrix-pilot-service",
@@ -569,16 +479,6 @@
 				"default": 1,
 				"max": 10,
 				"min": 1,
-				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
 				"required": "yes"
 			}]
 		},{
@@ -619,16 +519,6 @@
 				"max": 10,
 				"min": 1,
 				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
-				"required": "yes"
 			}]
 		},{
 			"key": "openpitrix-attachment-manager",
@@ -667,16 +557,6 @@
 				"default": 1,
 				"max": 10,
 				"min": 1,
-				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
 				"required": "yes"
 			}]
 		},{
@@ -717,16 +597,6 @@
 				"max": 10,
 				"min": 1,
 				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
-				"required": "yes"
 			}]
 		},{
 			"key": "openpitrix-dashboard",
@@ -765,16 +635,6 @@
 				"default": 1,
 				"max": 10,
 				"min": 1,
-				"required": "yes"
-			}, {
-				"key": "volume_size",
-				"label": "Volume Size",
-				"description": "The volume size for each instance",
-				"type": "integer",
-				"default": 10,
-				"min": 10,
-				"max": 1000,
-				"step": 10,
 				"required": "yes"
 			}]
 		}]
