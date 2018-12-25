@@ -14,7 +14,9 @@
 		"memory": {{cluster.openpitrix-db.memory}},
 		"instance_class": {{cluster.openpitrix-db.instance_class}},
 		"volume": {
-			"size": {{cluster.openpitrix-db.volume_size}}
+			"size": {{cluster.openpitrix-db.volume_size}},
+			"mount_point": "/opt/db",
+			"filesystem": "ext4"
 		},
 		"services": {
 			"start": {

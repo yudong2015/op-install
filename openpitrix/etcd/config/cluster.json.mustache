@@ -14,7 +14,9 @@
 		"memory": {{cluster.openpitrix-etcd.memory}},
 		"instance_class": {{cluster.openpitrix-etcd.instance_class}},
 		"volume": {
-			"size": {{cluster.openpitrix-etcd.volume_size}}
+			"size": {{cluster.openpitrix-etcd.volume_size}},
+			"mount_point": "/opt/etcd",
+			"filesystem": "ext4"
 		},
 		"services": {
 			"start": {
